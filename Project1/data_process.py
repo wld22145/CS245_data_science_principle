@@ -1,8 +1,8 @@
 import time
 import numpy as np
 import os
+from config import path_dir
 
-path_dir = r"D:\Lab\awa2\AwA2-features\Animals_with_Attributes2\Features\ResNet101"
 path_feature = path_dir + r"\AwA2-features.txt"
 path_filename = path_dir + r"\AwA2-filenames.txt"
 path_label = path_dir + r"\AwA2-labels.txt"

@@ -1,0 +1,1 @@
+path_dir = r"D:\Lab\awa2\AwA2-features\Animals_with_Attributes2\Features\ResNet101"
