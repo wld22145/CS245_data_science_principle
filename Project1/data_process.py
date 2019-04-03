@@ -67,24 +67,34 @@ show_information(0)
 reduced_features = features[:,:50]
 print("reduced features shape:",reduced_features.shape)
 
+total_train_features = reduced_features[:int(data_size*0.6)]
+total_train_labels = labels[:int(data_size*0.6)]
+test_features = reduced_features[int(data_size*0.6):]
+test_labels = labels[int(data_size*0.6):]
+print("train features shape:",total_train_features.shape)
+print("train labels shape:",total_train_labels.shape)
+print("test features shape:",test_features.shape)
+print("test labels shape:",test_labels.shape)
 # k-fold validation
 kfold= KFold(n_splits=5,random_state =None)
 fold_cnt = 0
-for train_index,test_index in kfold.split(reduced_features,labels):
-    train_features = reduced_features[train_index]
-    train_labels = labels[train_index]
-    test_features = reduced_features[test_index]
-    test_labels = labels[test_index]
+for train_index,valid_index in kfold.split(total_train_features,total_train_labels):
+    train_features = total_train_features[train_index]
+    train_labels = total_train_labels[train_index]
+    valid_features = total_train_features[valid_index]
+    valid_labels = total_train_labels[valid_index]
     fold_cnt += 1
     print("fold:", fold_cnt)
     print("train features shape:",train_features.shape)
     print("train labels shape:",train_labels.shape)
-    print("test features shape:",test_features.shape)
-    print("test labels shape:", test_labels.shape)
+    print("valid features shape:",valid_features.shape)
+    print("valid labels shape:", valid_labels.shape)
     # TODO: machine learning algorithm
-    # based on train/test features/labels, you can conduct further experiments
+    # based on train/valid features/labels, you can conduct further experiments
     #
 
+
+# finally, examine the model with tran/test features
 
 finish_time = time.time()
 print("time consumption",finish_time-start_time)
