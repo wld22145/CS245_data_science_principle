@@ -3,6 +3,8 @@ import numpy as np
 import os
 from config import path_dir
 from sklearn.model_selection import KFold
+import random
+
 
 path_feature = path_dir + r"\AwA2-features.txt"
 path_filename = path_dir + r"\AwA2-filenames.txt"
@@ -42,7 +44,7 @@ def parse_features():
                 features[i][j] = float(features[i][j])
         print(len(features[0]))
         features_np = np.array(features)
-        features_np.dump()
+        features_np.dump("features_np.npy")
         print("features saved as features_np.npy")
     features = np.load("features_np.npy")
     print("features loaded from features_np.npy")
@@ -55,12 +57,35 @@ def show_information(index):
     print("filename:",filenames[index])
     print("feature:",features[index])
 
+def prepare_dataset():
+    if not os.path.exists("features_shuffled.npy"):
+        features = parse_features()
+        labels = parse_labels()
+        random.seed(time.time())
+        shuffle_list = [i for i in range(data_size)]
+        random.shuffle(shuffle_list)
+        features_shuffled = []
+        labels_shuffled = []
+        for i in range(data_size):
+            idx = shuffle_list[i]
+            features_shuffled.append(features[idx])
+            labels_shuffled.append(labels[idx])
+        features_shuffled = np.array(features_shuffled)
+        labels_shuffled = np.array(labels_shuffled)
+        print("saving shuffled dataset")
+        features_shuffled.dump("features_shuffled.npy")
+        labels_shuffled.dump("labels_shuffled.npy")
+    features = np.load("features_shuffled.npy")
+    labels = np.load("labels_shuffled.npy")
+    return features,labels
+
+
 # prepare data
 filenames = parse_filenames()
-labels = parse_labels()
-features = parse_features()
+features,labels = prepare_dataset()
 
 show_information(0)
+
 
 # TODO: dimension reduction
 # here I simply choose the first 50 features as example
@@ -83,6 +108,13 @@ for train_index,valid_index in kfold.split(total_train_features,total_train_labe
     train_labels = total_train_labels[train_index]
     valid_features = total_train_features[valid_index]
     valid_labels = total_train_labels[valid_index]
+    print("test")
+    # print(train_features[0])
+    print(train_labels[0])
+    # print(valid_features[0])
+    print(valid_labels[0])
+
+
     fold_cnt += 1
     print("fold:", fold_cnt)
     print("train features shape:",train_features.shape)
