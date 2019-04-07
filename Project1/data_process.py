@@ -78,6 +78,20 @@ def prepare_dataset():
     labels = np.load("labels_shuffled.npy")
     return features,labels
 
+def shuffle_dataset(features,labels):
+    random.seed(time.time())
+    shuffle_list = [i for i in range(data_size)]
+    random.shuffle(shuffle_list)
+    features_shuffled = []
+    labels_shuffled = []
+    for i in range(data_size):
+        idx = shuffle_list[i]
+        features_shuffled.append(features[idx])
+        labels_shuffled.append(labels[idx])
+    features_shuffled = np.array(features_shuffled)
+    labels_shuffled = np.array(labels_shuffled)
+    return features_shuffled,labels_shuffled
+
 
 # prepare data
 filenames = parse_filenames()
