@@ -5,7 +5,6 @@ from config import path_dir
 from sklearn.model_selection import KFold
 import random
 
-
 path_feature = path_dir + r"\AwA2-features.txt"
 path_filename = path_dir + r"\AwA2-filenames.txt"
 path_label = path_dir + r"\AwA2-labels.txt"
