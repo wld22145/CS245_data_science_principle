@@ -1,3 +1,4 @@
+# images are resized to (224,224) in this program
 import pandas as pd
 import os
 import numpy as np
@@ -20,6 +21,7 @@ dic_name2class = {classname.loc[i][1]: classname.index[i] for i in range(classna
 
 def sift_img(imagename):
     image = cv2.imread(imagename)
+    image = cv2.resize(image,(224,224))
     sift = cv2.xfeatures2d_SIFT.create()
     kp, des = sift.detectAndCompute(image, None)
     return kp,des
@@ -65,8 +67,8 @@ def sift_all(num):
 kp_result,des_result = sift_all(num='max')
 
 print("Saving pickle file")
-pickle.dump(kp_result,"kp_result.pkl")
-pickle.dump(des_result,"des_result.pkl")
+pickle.dump(kp_result,"kp_result224.pkl")
+pickle.dump(des_result,"des_result224.pkl")
 
 finish_time = time.time()
 print("Total Time Consumption",finish_time-start_time)
