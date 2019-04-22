@@ -23,11 +23,12 @@ VGG19_bn: 25088 (512\*7\*7)
 ##SIFT Features
 AWA2 SIFT features can be found in the link:
 
-
+链接：https://pan.baidu.com/s/1tO94vkazn9AAXBp6oHFL-A 
+提取码：k7tj
 
 SIFT features are extracted by algorithm in opencv-python.
 
-sift224.py extracts SIFT key points and descriptors and stores them in 
+sift224.py extracts SIFT key points and descriptors, then stores them in 
 Pickle files.
 
 sift224_demo.py gives an visualized example of SIFT.
