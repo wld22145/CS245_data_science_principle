@@ -18,12 +18,20 @@ classname = pd.read_csv(path + 'classes.txt', header=None, sep='\t')
 dic_class2name = {classname.index[i]: classname.loc[i][1] for i in range(classname.shape[0])}
 dic_name2class = {classname.loc[i][1]: classname.index[i] for i in range(classname.shape[0])}
 
+def convert_kp(kp):
+    result = []
+    for point in kp:
+        # data structure of key point
+        tmp = [point.pt, point.size, point.angle, point.response, point.octave, point.class_id]
+        result.append(tmp)
+    return result
 
 def sift_img(imagename):
     image = cv2.imread(imagename)
     image = cv2.resize(image,(224,224))
     sift = cv2.xfeatures2d_SIFT.create()
     kp, des = sift.detectAndCompute(image, None)
+    kp = convert_kp(kp)
     return kp,des
 
 

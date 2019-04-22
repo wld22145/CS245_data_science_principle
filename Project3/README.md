@@ -2,10 +2,10 @@
 
 AWA2 deep learning features can be found in the link:
 
-链接：https://pan.baidu.com/s/1P_q5IQhXUcsV3OVMl4jOUw 
-提取码：hxy2 
+链接：https://pan.baidu.com/s/18x4Ze8bHNEY8mRqkfdX5tg 
+提取码：2mos
 
-All features are extracted by pre-trained neural network provided by PyTorch.
+Deep learning features are extracted by pre-trained neural network provided by PyTorch.
 
 Dimensions of features are as follow:
 
@@ -24,12 +24,29 @@ VGG19_bn: 25088 (512\*7\*7)
 AWA2 SIFT features can be found in the link:
 
 
-sift_demo.py shows details of SIFT key points and descriptors.
 
-sift.py extracts SIFT key points and descriptors and stores them in Pickle file.
+SIFT features are extracted by algorithm in opencv-python.
 
+sift224.py extracts SIFT key points and descriptors and stores them in 
+Pickle files.
+
+sift224_demo.py gives an visualized example of SIFT.
+
+sift.py and sift_demo.py can extract features from original images (not resized to (224,224)),
+however, these features are too huge to deal with.
 
 ##Selective Search Features
+AWA2 Selective Search features can be found in the link:
+
+
+
+Selective Search features are extracted by selectivesearch. You can find more details in 
+https://github.com/AlpacaDB/selectivesearch
+
+selective_search.py extracts feature regions and corresponding labels, then 
+stores them in Pickle files.
+
+selective_search_demo.py gives an visualized example of Selective Search.
 
 
 
