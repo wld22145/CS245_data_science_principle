@@ -68,8 +68,8 @@ def ss_all(num):
 lbl_result,reg_result = ss_all(num='max')
 
 print("Saving pickle file")
-pickle.dump(lbl_result,"lbl_result.pkl")
-pickle.dump(reg_result,"reg_result.pkl")
+pickle.dump(lbl_result,open("lbl_result.pkl","wb"))
+pickle.dump(reg_result,open("reg_result.pkl","wb"))
 
 finish_time = time.time()
 print("Total Time Consumption",finish_time-start_time)

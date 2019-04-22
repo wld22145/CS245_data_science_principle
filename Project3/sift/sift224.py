@@ -56,7 +56,7 @@ def sift_all(num):
     des_result = []
     for i in range(50):
         item = dic_class2name[i]
-        print("item",item)
+        print("item No.", i, "name", item)
         dir_kp_result,dir_des_result = sift_dir(path + 'JPEGImages/' + item, read_num=read_num)
         kp_result.extend(dir_kp_result)
         des_result.extend(dir_des_result)
@@ -67,8 +67,8 @@ def sift_all(num):
 kp_result,des_result = sift_all(num='max')
 
 print("Saving pickle file")
-pickle.dump(kp_result,"kp_result224.pkl")
-pickle.dump(des_result,"des_result224.pkl")
+pickle.dump(kp_result,open("kp_result224.pkl","wb"))
+pickle.dump(des_result,open("des_result224.pkl","wb"))
 
 finish_time = time.time()
 print("Total Time Consumption",finish_time-start_time)
