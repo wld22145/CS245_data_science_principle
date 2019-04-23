@@ -39,7 +39,8 @@ however, these features are too huge to deal with.
 ##Selective Search Features
 AWA2 Selective Search features can be found in the link:
 
-
+链接：https://pan.baidu.com/s/1nNaFRipTdHUHgGjj5OmwRw 
+提取码：22kb
 
 Selective Search features are extracted by selectivesearch. You can find more details in 
 https://github.com/AlpacaDB/selectivesearch
@@ -50,7 +51,9 @@ of Pickle file.
 
 selective_search_demo.py gives an visualized example of Selective Search.
 
-
+Notice that collie_10718.jpg is originally a grey-value image while
+ other images in the dataset are all RGB. So we transform it to RGB 
+  to make it suitable for the algorithm.
 
 
 
