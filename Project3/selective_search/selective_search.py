@@ -12,7 +12,7 @@ import selectivesearch
 
 start_time = time.time()
 path = 'Animals_with_Attributes2/'
-
+strorage_path = 'ss_tmp/'
 
 classname = pd.read_csv(path + 'classes.txt', header=None, sep='\t')
 dic_class2name = {classname.index[i]: classname.loc[i][1] for i in range(classname.shape[0])}
@@ -58,18 +58,21 @@ def ss_all(num):
     for i in range(50):
         item = dic_class2name[i]
         print("item No.",i,"name",item)
-        dir_lbl_result,dir_reg_result = ss_dir(path + 'JPEGImages/' + item, read_num=read_num)
-        lbl_result.extend(dir_lbl_result)
-        reg_result.extend(dir_reg_result)
-    print("image label result size",len(lbl_result))
-    print("region result size", len(reg_result))
+        _, dir_reg_result = ss_dir(path + 'JPEGImages/' + item, read_num=read_num)
+        print("Saving pickle file")
+        # pickle.dump(dir_lbl_result, open(strorage_path + "lbl_result"+str(i)+".pkl", "wb"))
+        pickle.dump(dir_reg_result, open(strorage_path + "reg_result"+str(i)+".pkl", "wb"))
+        # lbl_result.extend(dir_lbl_result)
+        # reg_result.extend(dir_reg_result)
+    # print("image label result size",len(lbl_result))
+    # print("region result size", len(reg_result))
     return lbl_result,reg_result
 
 lbl_result,reg_result = ss_all(num='max')
 
-print("Saving pickle file")
-pickle.dump(lbl_result,open("lbl_result.pkl","wb"))
-pickle.dump(reg_result,open("reg_result.pkl","wb"))
+# print("Saving pickle file")
+# pickle.dump(lbl_result,open("lbl_result.pkl","wb"))
+# pickle.dump(reg_result,open("reg_result.pkl","wb"))
 
 finish_time = time.time()
 print("Total Time Consumption",finish_time-start_time)

@@ -44,8 +44,9 @@ AWA2 Selective Search features can be found in the link:
 Selective Search features are extracted by selectivesearch. You can find more details in 
 https://github.com/AlpacaDB/selectivesearch
 
-selective_search.py extracts feature regions and corresponding labels, then 
-stores them in Pickle files.
+selective_search.py extracts feature regions and corresponding labels. The
+image labels are too huge to store, so we only store feature regions in form
+of Pickle file.
 
 selective_search_demo.py gives an visualized example of Selective Search.
 
