@@ -113,9 +113,21 @@ def real_data_loader():
     test_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)
     return train_loader, test_loader
 
+def adaptation_data_loader():
+    art_data = ImageFolder(art_path, transform)
+    art_loader = DataLoader(art_data, batch_size=64, shuffle=True)
+    clipart_data = ImageFolder(clipart_path, transform)
+    clipart_loader = DataLoader(clipart_data, batch_size=64, shuffle=True)
+    product_data = ImageFolder(product_path, transform)
+    product_loader = DataLoader(product_data, batch_size=64, shuffle=True)
+    real_data = ImageFolder(real_path, transform)
+    real_loader = DataLoader(real_data, batch_size=64, shuffle=False)
+    return art_loader, clipart_loader, product_loader, real_loader
+
+
 if __name__ == "__main__":
     art_train_loader, art_test_loader = art_data_loader()
     clipart_train_loader, clipart_test_loader = clipart_data_loader()
     product_train_loader, product_test_loader = product_data_loader()
     real_train_loader, real_test_loader = real_data_loader()
-
+    art_loader, clipart_loader, product_loader, real_loader  = adaptation_data_loader()
